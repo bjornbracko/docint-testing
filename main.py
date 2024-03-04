@@ -4,15 +4,18 @@ import pandas as pd
 import json
 import base64
 
-
 def main():
+
     st.title("DocInt")
 
     func_url = st.text_input("Enter the function URL")
     
 
+
     link = st.text_input("Enter the link of the document")
     pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+
+    doc = st.text_input("Enter the type of the document")
 
     if link or pdf_file:
         response = None
@@ -24,19 +27,19 @@ def main():
             request_body = {
                 "file": b64_pdf,
             }
-            response = requests.post(func_url, json=request_body)
+            response = requests.post(func_url, json=request_body, params={"doc": doc})
         elif link:
-            response = requests.get(func_url, params={"link": link})
+            response = requests.get(func_url, params={"link": link, "doc": doc})
 
         data = json.loads(response.text)
         # Display Total and Invoice Number
-        col1, col2 = st.columns(2)
+        #col1, col2 = st.columns(2)
 
-        with col1:
-            st.write(f"Invoice Number: {data['InvoiceNumber']}")
+        #with col1:
+        #    st.write(f"Invoice Number: {data['InvoiceNumber']}")
             
-        with col2:
-            st.write(f"Total: {data['Total']}")
+        #with col2:
+        #    st.write(f"Total: {data['Total']}")
 
         # Convert the items list to a pandas DataFrame and display it
         items_df = pd.DataFrame(data['Items'])
