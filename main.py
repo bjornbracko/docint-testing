@@ -6,17 +6,17 @@ import base64
 
 def main():
 
-    st.title("DocInt")
+    st.title("DocInt V2")
 
     func_url = st.text_input("Enter the function URL")
     
+    doc = st.text_input("Enter the type of the document")
 
 
     link = st.text_input("Enter the link of the document")
     pdf_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 
-    doc = st.text_input("Enter the type of the document")
-
+   
     if link or pdf_file:
         response = None
         if pdf_file:
@@ -43,6 +43,8 @@ def main():
 
         # Convert the items list to a pandas DataFrame and display it
         items_df = pd.DataFrame(data['Items'])
+        del data['Items']
+        st.write(data)
         st.table(items_df)
 
 
