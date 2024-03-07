@@ -45,7 +45,8 @@ def main():
         # Convert the items list to a pandas DataFrame and display it
         items_df = pd.DataFrame(data['Items'])
         del data['Items']
-        st.write(data)
+        if data != {}:
+            st.write(data)
         st.table(items_df)
 
 
