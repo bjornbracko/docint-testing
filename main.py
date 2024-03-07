@@ -6,11 +6,12 @@ import base64
 
 def main():
 
-    st.title("DocInt V2")
+    st.title("DocInt")
 
     func_url = st.text_input("Enter the function URL")
     
-    doc = st.text_input("Enter the type of the document (Telemach - ald (default), primus, indoma, indoma-rs, gros, spl, heva) | Mladinska - pustis prazno)")
+    #doc = st.text_input("Enter the type of the document (Telemach - ald (default), primus, indoma, indoma-rs, gros, spl, heva) | Mladinska - pustis prazno)")
+    doc = 'gros'
 
 
     link = st.text_input("Enter the link of the document")
