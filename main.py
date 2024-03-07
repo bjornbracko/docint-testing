@@ -19,18 +19,19 @@ def main():
 
    
     if link or pdf_file:
-        response = None
-        if pdf_file:
-            pdf_bytes = pdf_file.getvalue()
-            
-            # Encode the bytes to base64
-            b64_pdf = base64.b64encode(pdf_bytes).decode()
-            request_body = {
-                "file": b64_pdf,
-            }
-            response = requests.post(func_url, json=request_body, params={"doc": doc})
-        elif link:
-            response = requests.get(func_url, params={"link": link, "doc": doc})
+        with st.spinner("Processing..."):
+            response = None
+            if pdf_file:
+                pdf_bytes = pdf_file.getvalue()
+                
+                # Encode the bytes to base64
+                b64_pdf = base64.b64encode(pdf_bytes).decode()
+                request_body = {
+                    "file": b64_pdf,
+                }
+                response = requests.post(func_url, json=request_body, params={"doc": doc})
+            elif link:
+                response = requests.get(func_url, params={"link": link, "doc": doc})
 
         data = json.loads(response.text)
         # Display Total and Invoice Number
