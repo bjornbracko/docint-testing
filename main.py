@@ -10,7 +10,7 @@ def main():
 
     func_url = st.text_input("Enter the function URL")
     
-    doc = st.text_input("Enter the type of the document (Telemach - ald (default), primus, indoma, indoma-rs, gros, spl, heva) | Mladinska - pustis prazno)")
+    doc = st.text_input("Enter the type of the document (Telemach - ald, primus, indoma, indoma-rs, gros, spl, heva, petrol | Mladinska - pustis prazno)")
 
 
     link = st.text_input("Enter the link of the document")
@@ -32,7 +32,12 @@ def main():
             elif link:
                 response = requests.get(func_url, params={"link": link, "doc": doc})
 
-        data = json.loads(response.text)
+
+        try:
+            data = json.loads(response.text)
+        except:
+            print(response)
+            data = pd.DataFrame()
         # Display Total and Invoice Number
         #col1, col2 = st.columns(2)
 
