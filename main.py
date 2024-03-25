@@ -5,7 +5,7 @@ import json
 import base64
 
 def main():
-
+    st.set_page_config(layout="wide")
     st.title("DocInt")
 
     func_url = st.text_input("Enter the function URL")
