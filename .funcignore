@@ -1,0 +1,7 @@
+.git*
+.vscode
+.gitignore
+.funcignore
+main_local.py
+main_old.py
+test.ipynb
