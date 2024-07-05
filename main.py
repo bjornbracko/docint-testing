@@ -41,7 +41,8 @@ def main():
                 if data != {}:
                     st.write(data)
                 st.table(items_df)
-            except:
+            except Exception as e:
+                st.write(e)
                 st.write(response)
 
 
